@@ -1,7 +1,3 @@
-/// GOAL:
-// LINK THIS APP TO HEROKU AND MONGOOSE ATLAS TO POST
-// ON THE INTERNET!!!
-
 
 
 //jshint esversion:6
@@ -18,10 +14,6 @@ const mongoose = require("mongoose")
 
 // Connect a new database 
 mongoose.connect("mongodb+srv://admin-nicolas:"+process.env.PASSWORD+"@cluster0.ghiv3.mongodb.net/blogDB",{useNewUrlParser:true, useUnifiedTopology: true });
-
-
-
-
 
 
 const homeStartingContent = "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.";
@@ -73,9 +65,34 @@ app.get("/contact", function(req, res){
   res.render("contact", {contactContent: contactContent});
 });
 
-app.get("/compose", function(req, res){
+app.get("/secretLocation", function(req, res){
   res.render("compose");
 });
+
+app.get("/login", (req, res)=>{
+  res.render("login");
+})
+
+app.get("/error", (req,res)=>{
+  res.render("error");
+})
+
+app.post("/error", (req,res)=>{
+  res.redirect("/");
+}) 
+
+app.post("/login", (req,res)=>{
+  
+  const {username,password}=req.body;
+
+  // check password
+  if(username === "Nick" && password == "Bruce"){
+    res.redirect("/secretLocation");
+  }else{
+    res.redirect("/error");
+  }
+
+})
 
 app.post("/compose", function(req, res){
 
