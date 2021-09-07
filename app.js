@@ -41,7 +41,7 @@ app.get("/", function(req, res){
 
   // look for all posts under posts collections in
   // mongodb database!
-  Post.find({}, function(err, posts){
+  Post.find({}, function(err, foundPosts){
     if(!err){
       console.log("Succesfully found posts!!")
     }else{
@@ -50,7 +50,7 @@ app.get("/", function(req, res){
 
     res.render("home", {
       startingContent: homeStartingContent,
-      posts: posts
+      posts: foundPosts
     })
     
   })
