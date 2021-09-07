@@ -5,7 +5,7 @@
 
 
 //jshint esversion:6
-
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -14,8 +14,13 @@ const _ = require("lodash");
 // Install mongoose and require
 const mongoose = require("mongoose")
 
+
+
 // Connect a new database 
 mongoose.connect("mongodb+srv://admin-nicolas:"+process.env.PASSWORD+"@cluster0.ghiv3.mongodb.net/blogDB",{useNewUrlParser:true, useUnifiedTopology: true });
+
+
+
 
 
 
