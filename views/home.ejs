@@ -3,8 +3,7 @@
     <h1>Home</h1>
     <p> <%= startingContent %> </p>
 
-
-  <%  posts.forEach(function(post){ %>
+<%  posts.map(function(post){ %>
 
     <h1><%=post.title%></h1>
     <p>
