@@ -131,6 +131,16 @@ app.get("/posts/:postID", function(req, res){
 
 });
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+
+
+// MADE TO WORK BOTH LOCALLY (PORT 3000) AND REMOTELY
+// VIA HEROKU!!!
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+app.listen(port, function() {
+  console.log("Server has started succesfully");
 });
