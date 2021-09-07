@@ -15,7 +15,7 @@ const _ = require("lodash");
 const mongoose = require("mongoose")
 
 // Connect a new database 
-mongoose.connect("mongodb+srv://admin-nicolas:Test123@cluster0.ghiv3.mongodb.net/blogDB",{useNewUrlParser:true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://admin-nicolas:"+process.env.PASSWORD+"@cluster0.ghiv3.mongodb.net/blogDB",{useNewUrlParser:true, useUnifiedTopology: true });
 
 
 
