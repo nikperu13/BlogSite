@@ -64,9 +64,13 @@ app.get("/contact", function(req, res){
   res.render("contact", {contactContent: contactContent});
 });
 
-app.get("/secretLocation", function(req, res){
+app.get("/secretLocationWrite", function(req, res){
   res.render("compose");
 });
+
+app.get("/secretLocationDelete", (req,res)=>{
+  res.render("delete");
+})
 
 app.get("/login", (req, res)=>{
   res.render("login");
@@ -82,11 +86,16 @@ app.post("/error", (req,res)=>{
 
 app.post("/login", (req,res)=>{
   
-  const {username,password}=req.body;
+  const {username,password,button}=req.body;
+
+  console.log(req.body);
 
   // check password
   if(username === process.env.USERNAME && password === process.env.PASSWORD){
-    res.redirect("/secretLocation");
+    if(button === "delete")
+      res.redirect("/secretLocationDelete")
+    else if(button === "write")
+      res.redirect("/secretLocationWrite");
   }else{
     res.redirect("/error");
   }
@@ -110,6 +119,17 @@ app.post("/compose", function(req, res){
   });
 
 });
+
+app.post("/delete", (req,res)=>{
+  const blogPostTitle = req.body.postTitle
+
+  Post.deleteOne({title:blogPostTitle}, err =>{
+    if(!err){
+      console.log(blogPostTitle + " blog entry was succesfully deleted")
+      res.redirect("/");
+    }
+  })
+})
 
 app.get("/posts/:postID", function(req, res){
 

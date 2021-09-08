@@ -2,9 +2,17 @@
 
 <h1>Login Screen</h1>
 <form action="/login" method="POST">
-    <input type="password" placeholder="Username" name="username">
-    <input type="password"placeholder="Password" name="password">
-    <button class="btn btn-primary" type="submit" name="button">Submit</button>
+    <label>Username</label>
+    <br>
+    <input class="login" type="password" name="username">
+    <br>
+    <label>Password</label>
+    <br>
+    <input class="login" type="password" name="password">
+    <br>
+    <button class="btn btn-primary login" type="submit" name="button" value= "write">Write</button>
+    <br>
+    <button class="btn btn-primary login" type="submit" name="button" value= "delete">Remove</button>
 </form>
 
 <%- include("partials/footer"); -%>
