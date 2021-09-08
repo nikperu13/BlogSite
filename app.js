@@ -12,7 +12,7 @@ const mongoose = require("mongoose")
 
 
 // Connect a new database 
-mongoose.connect("mongodb+srv://admin-nicolas:"+process.env.PASSWORD+"@cluster0.ghiv3.mongodb.net/blogDB",{useNewUrlParser:true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://admin-nicolas:"+process.env.PASSWORD_DB+"@cluster0.ghiv3.mongodb.net/blogDB",{useNewUrlParser:true, useUnifiedTopology: true });
 
 
 const homeStartingContent = "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.";
@@ -85,7 +85,7 @@ app.post("/login", (req,res)=>{
   const {username,password}=req.body;
 
   // check password
-  if(username === "Nick" && password == "Bruce"){
+  if(username === process.env.USERNAME && password === process.env.PASSWORD){
     res.redirect("/secretLocation");
   }else{
     res.redirect("/error");
@@ -131,24 +131,6 @@ app.get("/posts/:postID", function(req, res){
         console.log("check code, ERROR")
       }
   })
-
-/// TITLE (change "/posts/:..." and home.ejs "href=post....")
-//   const titleName = req.params.postTitle
-
-//   Post.findOne({title: titleName}, function(err, post){
-//     if(!err){
-//       console.log("Succefully TESTTTT found title, rendering post!");
-//       res.render("post", {
-//         title: post.title,
-//         content: post.content
-//       })
-//     }
-//     else{
-//       console.log("check code, ERROR")
-//     }
-// })
-
-
 
 });
 
